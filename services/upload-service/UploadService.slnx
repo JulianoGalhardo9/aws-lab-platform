@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="UploadService.Api/UploadService.Api.csproj" />
+  <Project Path="UploadService.Application/UploadService.Application.csproj" />
+  <Project Path="UploadService.Domain/UploadService.Domain.csproj" />
+  <Project Path="UploadService.Infrastructure/UploadService.Infrastructure.csproj" />
+</Solution>
