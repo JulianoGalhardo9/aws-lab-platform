@@ -37,3 +37,15 @@ volumes:
 networks:
   aws-lab-network:
     driver: bridge
+  
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack-container
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=sqs,s3
+    volumes:
+      - "./localstack:/var/lib/localstack"
+    networks:
+      - aws-lab-network
