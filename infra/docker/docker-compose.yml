@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  auth-db:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    container_name: auth-db-container
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Password123
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    networks:
+      - aws-lab-network
+
+  auth-service:
+    image: auth-service:local
+    container_name: auth-service-container
+    build:
+      context: ../../services/auth-service
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=auth-db,1433;Database=AuthDb;User Id=SA;Password=YourStrong@Password123;TrustServerCertificate=True;
+    ports:
+      - "5001:8080"
+    depends_on:
+      - auth-db
+    networks:
+      - aws-lab-network
+
+volumes:
+  sql_data:
+
+networks:
+  aws-lab-network:
+    driver: bridge
