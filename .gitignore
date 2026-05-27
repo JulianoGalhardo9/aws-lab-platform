@@ -1,0 +1,71 @@
+# =========================
+# Visual Studio / .NET
+# =========================
+
+# Build
+bin/
+obj/
+out/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+packages/
+!packages/build/
+
+# Testes
+TestResults/
+
+# Publicação
+publish/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Secrets
+appsettings.Development.json
+secrets.json
+
+# =========================
+# Node.js
+# =========================
+
+node_modules/
+
+# Build
+dist/
+build/
+
+# Cache
+.cache/
+.next/
+.nuxt/
+.parcel-cache/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Coverage
+coverage/
+
+# Vite
+vite.svg
+
+# TypeScript
+*.tsbuildinfo
