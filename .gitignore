@@ -29,7 +29,6 @@ publish/
 Thumbs.db
 
 # Secrets
-appsettings.Development.json
 secrets.json
 
 # =========================
