@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # Container do Banco de Dados usando Azure SQL Edge
   auth-db:
     image: mcr.microsoft.com/azure-sql-edge:latest
     container_name: auth-db-container
@@ -15,6 +16,7 @@ services:
     networks:
       - aws-lab-network
 
+  # Container do nosso Microserviço .NET 10
   auth-service:
     image: auth-service:local
     container_name: auth-service-container
@@ -31,21 +33,22 @@ services:
     networks:
       - aws-lab-network
 
-volumes:
-  sql_data:
-
-networks:
-  aws-lab-network:
-    driver: bridge
-  
+  # LocalStack para simular AWS (S3, SQS, SNS)
   localstack:
     image: localstack/localstack:latest
     container_name: localstack-container
     ports:
       - "4566:4566"
     environment:
-      - SERVICES=sqs,s3
+      - SERVICES=sqs,s3,sns
     volumes:
       - "./localstack:/var/lib/localstack"
     networks:
       - aws-lab-network
+
+volumes:
+  sql_data:
+
+networks:
+  aws-lab-network:
+    driver: bridge
