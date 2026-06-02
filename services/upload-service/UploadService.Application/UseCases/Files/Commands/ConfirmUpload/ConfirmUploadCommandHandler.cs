@@ -22,7 +22,7 @@ public class ConfirmUploadCommandHandler : IRequestHandler<ConfirmUploadCommand>
             S3Key: $"uploads/user-fake-123/{request.FileId}-documento.pdf",
             FileName: "documento.pdf",
             ContentType: "application/pdf",
-            SizeInBytes: 1048576, // 1MB
+            SizeInBytes: 1048576,
             UserId: Guid.NewGuid()
         );
 
