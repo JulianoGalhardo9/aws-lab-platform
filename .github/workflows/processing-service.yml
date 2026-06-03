@@ -1,0 +1,27 @@
+name: Processing Service CI/CD
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'services/processing-service/**'
+
+jobs:
+  deploy-lambda:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+
+    - name: Install Amazon Lambda Tools
+      run: dotnet tool install -g Amazon.Lambda.Tools
+
+    - name: Package Lambda
+      run: dotnet lambda package --project-location services/processing-service/ProcessingService --configuration Release --output services/processing-service/processing-lambda.zip
